@@ -1,0 +1,26 @@
+name: Test Docker Socket
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  docker-test:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test Docker info
+        run: docker info
+
+      - name: Test Docker build
+        run: |
+          cat > Dockerfile.test << 'EOF'
+          FROM alpine:latest
+          RUN echo "Hello from Docker build!" > /hello.txt
+          CMD cat /hello.txt
+          EOF
+          docker build -t test-build -f Dockerfile.test .
+          docker run --rm test-build
