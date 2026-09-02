@@ -5,8 +5,8 @@ services:
     image: github-actions-runner:latest
     container_name: github-runner
     environment:
-      - REPO_URL=https://github.com/your-org/your-repo
-      - RUNNER_TOKEN=${RUNNER_TOKEN}
+      - REPO_URL=https://github.com/huynhhoang04/quickbite-runner
+      - RUNNER_TOKEN=BXMV5CEIZI3HQ3JCTHS7L43KTAO6A
       - RUNNER_NAME=quickbite-runner
       - RUNNER_WORKDIR=/tmp/runner
     volumes:
