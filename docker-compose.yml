@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  runner:
+    image: github-actions-runner:latest
+    container_name: github-runner
+    environment:
+      - REPO_URL=https://github.com/your-org/your-repo
+      - RUNNER_TOKEN=${RUNNER_TOKEN}
+      - RUNNER_NAME=quickbite-runner
+      - RUNNER_WORKDIR=/tmp/runner
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - runner-data:/tmp/runner
+    restart: unless-stopped
+    network_mode: host
+
+volumes:
+  runner-data:
